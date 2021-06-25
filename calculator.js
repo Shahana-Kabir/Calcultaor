@@ -4,17 +4,17 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get("/", function(req, res){
-    res.sendFile(__dirname + "/index.html");
+app.get("/bmicalculator", function(req, res){
+    res.sendFile(__dirname + "/bmiCalculator.html");
 
 })
-app.post("/", function(req,res){
-    var num1 = Number(req.body.num1);
-    var num2 = Number(req.body.num2);
-    var result = num1 + num2;
+app.post("/bmicalculator", function(req,res){
+    var weight1 = parseFloat(req.body.weight);
+    var height1 = parseFloat(req.body.height);
+    var bmi = weight1 / (height1 * height1);
 
-    res.send("thanks for posting the result" + result);
-    console.log(req.body.num1);
+    res.send("Your BMI is" + bmi);
+   
 })
 
 
